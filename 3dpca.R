@@ -7,7 +7,7 @@ fn <- "example.eigenvec"
  # Read data from fn into data frame evecDat with appropriate column names
 evecDat <- read.table(fn, col.names = c("Pop", "sample", "PC1", "PC2", "PC3", "PC4", "PC5", "PC6", "PC7", "PC8", "PC9", "PC10"))
  # Create a PCA plot
- ggplot(evecDat, aes(x = PC1, y = PC2, color = "Sample")) +
+ ggplot(evecDat, aes(x = PC1, y = PC2, color = "Pop")) +
 +   geom_point(shape = 21, fill = "white", size = 3) + # Hollow circles
 +   geom_text(aes(label = Sample), vjust = 1.5, size = 3) + # Add sample names
 +   scale_color_brewer(palette = "Set3") + # Use a color palette from RColorBrewer
@@ -15,14 +15,14 @@ evecDat <- read.table(fn, col.names = c("Pop", "sample", "PC1", "PC2", "PC3", "P
 +   labs(title = "PCA Plot", x = "PC1", y = "PC2") # Add labels and title
 str(evecDat)
 
-ggplot(evecDat, aes(x = PC1, y = PC2, color = Sample)) +
+ggplot(evecDat, aes(x = PC1, y = PC2, color = Pop)) +
 +   geom_point() +
 +   labs(title = "PCA Plot", x = "Principal Component 1", y = "Principal Component 2") +
 +   theme_minimal() +
 +   scale_color_manual(values = rainbow(length(unique(evecDat$Sample)))) +
 +   theme(legend.position = "right")
 library(plotly)
-pca_plot <-ggplot(evecDat, aes(x = PC1, y = PC2, color = Sample)) +
+pca_plot <-ggplot(evecDat, aes(x = PC1, y = PC2, color = Pop)) +
 +   geom_point() +
 +   labs(title = "PCA Plot", x = "Principal Component 1", y = "Principal Component 2") +
 +   theme_minimal() +
